@@ -48,6 +48,12 @@ public class StudentService {
             Cursor cursor = db.query(studentTable.getName(), studentTable.getArrayColumnName(), null, null, null, null, null);
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
+                    students.add(new StudentModel(
+                            cursor.getString(cursor.getColumnIndex("id")),
+                            cursor.getString(cursor.getColumnIndex("name")),
+                            cursor.getInt(cursor.getColumnIndex("core")),
+                            cursor.getInt(cursor.getColumnIndex("isGraduate"))
+                    ));
                     while (cursor.moveToNext()) {
                         StudentModel student = new StudentModel(
                                 cursor.getString(cursor.getColumnIndex("id")),
